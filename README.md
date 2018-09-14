@@ -35,6 +35,6 @@ Just in case you want to set up your own blog with your styles
 
 ---
 
-A live view of the repository can be found at:
+A live view of the repository can be found at [Heroku](https://mortus.herokuapp.com/)
 ___
 This is licensed under an MIT license that can be found at: [License](LICENSE)
