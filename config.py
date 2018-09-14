@@ -25,7 +25,7 @@ class ProdConfig(Config):
     """
     class that defines the settings for the deployed app
     """
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
 config_options = {
