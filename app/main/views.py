@@ -11,7 +11,7 @@ def index():
     :return:
     """
 
-    title = 'Home - Pitch'
+    title = 'Mortus - Welcome to the blog'
 
     return render_template('index.html', title=title)
 

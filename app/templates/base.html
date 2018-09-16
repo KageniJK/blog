@@ -1,5 +1,10 @@
 {% extends 'bootstrap/base.html'%}
 
+
+<!-- favicon for the browser-->
+
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
 <!-- Navbar block  -->
 {% block navbar %}
     {% include 'navbar.html' %}
