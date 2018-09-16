@@ -1,9 +1,9 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import User, Post
+from ..models import User, Post, Comment
 from flask_login import login_required, current_user
 import markdown2
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from .. import db, photos
 
 
@@ -71,5 +71,15 @@ def update_pic(uname):
 @main.route('/post/<int:post_id>')
 def post(post_id):
     post = Post.query.filter_by(id=post_id).first()
+    form = CommentForm()
 
-    return render_template('post.html', post=post)
+
+    if form.validate_on_submit():
+        comment = form.comment.data
+        new_comment = Comment(comment=comment, post_id=post_id)
+
+        new_comment.save_comment()
+
+        return redirect(url_for('.post', post=post.id))
+    comments = Comment.query.filter_by(post_id=post_id).all()
+    return render_template('post.html', post=post, post_id=post_id, comment_form=form, comments=comments)

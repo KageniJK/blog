@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% import "bootstrap/wtf.html" as wtf %}
+
 {% block content %}
 <header class="masthead" style="background-image: url('{{ url_for('static', filename='post-bg.jpg') }}')">
       <div class="container">
@@ -9,7 +11,8 @@
               <h1>{{ post.title }}</h1>
               <span class="meta">Posted by
                 {{ post.user_id }}
-                on {{ post.date_posted.strftime('%B %d, %Y') }}</span>
+                on {{ post.date_posted.strftime('%B %d, %Y') }}
+                  <hr>
             </div>
           </div>
         </div>
@@ -22,6 +25,11 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             {{ post.post|safe }}
+                  {% for comment in comments %}
+                    {{ comment.comment }}
+                        <hr>
+                   {% endfor %}
+              {{ wtf.quick_form(comment_form) }}
           </div>
         </div>
       </div>
