@@ -1,10 +1,10 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import User, Post, Comment
+from ..models import User, Post, Comment, List
 from flask_login import login_required, current_user
-import markdown2
 from .forms import PostForm, CommentForm
 from .. import db, photos
+from ..emails import notification
 
 
 @main.route('/')
@@ -29,10 +29,12 @@ def new_blog():
     if post_form.validate_on_submit():
         title = post_form.title.data
         post_actual = post_form.post.data
+        recepients = List.get_emails()
 
         new_post = Post(title=title, post=post_actual, user_id=current_user.id)
 
         new_post.save_post()
+        notification("New blog post", "email/notification", recepients)
         return redirect(url_for('.profile', uname=current_user.username))
 
     return render_template('new_post.html', post_form=post_form)
@@ -68,11 +70,10 @@ def update_pic(uname):
     return redirect(url_for('main.profile', uname=uname))
 
 
-@main.route('/post/<int:post_id>')
+@main.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def post(post_id):
     post = Post.query.filter_by(id=post_id).first()
     form = CommentForm()
-
 
     if form.validate_on_submit():
         comment = form.comment.data
@@ -80,6 +81,8 @@ def post(post_id):
 
         new_comment.save_comment()
 
-        return redirect(url_for('.post', post=post.id))
+        return redirect(url_for('.post', post_id=post.id))
+
     comments = Comment.query.filter_by(post_id=post_id).all()
+
     return render_template('post.html', post=post, post_id=post_id, comment_form=form, comments=comments)

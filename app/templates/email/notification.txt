@@ -1,0 +1,3 @@
+Hello {{user.username}}
+New blog alert.
+there is a new blog post on Mortus.

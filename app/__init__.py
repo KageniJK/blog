@@ -5,6 +5,7 @@ from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_simplemde import SimpleMDE
 from flask_uploads import UploadSet, configure_uploads, IMAGES
+from flask_mail import Mail
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -14,6 +15,7 @@ db = SQLAlchemy()
 bootstrap = Bootstrap()
 simple = SimpleMDE()
 photos = UploadSet('photos', IMAGES)
+mail = Mail()
 
 
 def create_app(config_name):
@@ -39,6 +41,7 @@ def create_app(config_name):
     db.init_app(app)
     login_manager.init_app(app)
     simple.init_app(app)
+    mail.init_app(app)
 
     # Registering authentication blueprint
     from .auth import auth as auth_blueprint

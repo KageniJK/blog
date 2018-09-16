@@ -1,0 +1,5 @@
+Hello {{user.username}}
+Welcome to Mortus
+Thank you for chosing us to be your blogging partner. we would like to wish you all the best in your bloggimg future and hope that we may be
+ of service. remember you could always reach the admin for any of your queries. Mortus reserves the right of service to anyone who uses this
+  platform to spread offence or goes against the morals of the site. happy blogging.

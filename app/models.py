@@ -88,3 +88,22 @@ class Comment(db.Model):
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
+
+
+class List(db.Model):
+    """
+    class that stores followers emails
+    """
+
+    __tablename__ = 'lists'
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255))
+
+    def save_list(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def get_list(cls):
+        lists = List.query.filter_by(id).all()
+        return lists
