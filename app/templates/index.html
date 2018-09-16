@@ -2,8 +2,26 @@
 
 
 {% block content %}
-<h1>Here lies me</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+        {% for post in posts %}
+          <div class="post-preview">
+            <a href="{{ url_for('main.post', post_id=post.id) }}">
+              <h2 class="post-title">
+                {{ post.title }}
+              </h2>
+            </a>
+            <p class="post-meta">Posted by {{ post.user_id }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
+          </div>
+          {% endfor %}
+          <hr>
+        </div>
+      </div>
+    </div>
 
-<a href="{{url_for('auth.login')}}">Sign in</a>
+    <hr>
+
+
 
 {% endblock %}

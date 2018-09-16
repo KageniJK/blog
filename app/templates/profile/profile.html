@@ -17,26 +17,26 @@
       <input type="file"  name="photo" class="form-control" required>
       <input type="submit">
     </form>
-      <a href="{{url_for('main.new_pitch')}}">New Pitch</a>
+      <a href="{{url_for('main.new_blog')}}">New Post</a>
       {% endif %}
 
   </div>
 
 
 
-  <!--Display pitches by profile-->
+  <!--Display posts by profile-->
   <div class="col-md-4">
 
 
       <ul>
-            {% for pitch in pitches %}
+            {% for post in posts %}
           <li>
               <div class="card">
                   <div class="card-title">
-                      <strong>{{pitch.title}}</strong>
+                      <strong>{{post.title}}</strong>
                   </div>
                   <div class="card-body">
-                      {{pitch.pitch_actual}}
+                      {{post.post|safe}}
                   </div>
               </div>
           </li>
