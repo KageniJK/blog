@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<!-- displaying  Username-->
+  <div class="col-md-4">
+    <h3> {{user.username| capitalize}} </h3>
+    {% if user.avatar %}
+    <img src="{{url_for('static',filename=user.avatar)}}" alt="" class="img-thumbnail">
+    {%else%}
+    <p>No profile picture</p>
+    {% endif %}
+    {% if user == current_user %}
+    <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
+
+      <input type="file"  name="photo" class="form-control" required>
+      <input type="submit">
+    </form>
+      <a href="{{url_for('main.new_pitch')}}">New Pitch</a>
+      {% endif %}
+
+  </div>
+
+
+
+  <!--Display pitches by profile-->
+  <div class="col-md-4">
+
+
+      <ul>
+            {% for pitch in pitches %}
+          <li>
+              <div class="card">
+                  <div class="card-title">
+                      <strong>{{pitch.title}}</strong>
+                  </div>
+                  <div class="card-body">
+                      {{pitch.pitch_actual}}
+                  </div>
+              </div>
+          </li>
+            {% endfor %}
+      </ul>
+  </div>
+</div>
+</div>
+
+
+
+
+{% endblock %}

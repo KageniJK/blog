@@ -17,7 +17,7 @@ class DevConfig(Config):
     """
     class that defines the settings when in development
     """
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://qagz:password@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://qagz:password@localhost/blog'
     DEBUG = True
 
 
