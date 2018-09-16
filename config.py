@@ -3,7 +3,7 @@ import os
 
 class Config:
     """
-    class thet defines the app settings
+    class that defines the app settings
     """
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SQL_TRACK_MODIFICATIONS = False
@@ -28,7 +28,15 @@ class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
+class TestConfig(Config):
+    """
+    class that defines the config for the various tests
+    """
+    pass
+
+
 config_options = {
     'development': DevConfig,
-    'production': ProdConfig
+    'production': ProdConfig,
+    'test': TestConfig
 }
