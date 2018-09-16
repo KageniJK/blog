@@ -3,9 +3,10 @@
 {% import 'bootstrap/wtf.html' as wtf%}
 
 {% block content %}
-    <div class="col-md-4">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
         {{ wtf.quick_form(post_form) }}
-        {{simplemde.load}}
+        {{ simplemde.load }}
     </div>
-{{format_review|safe}}
+    <div class="col-md-2"></div>
 {% endblock %}
