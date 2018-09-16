@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config import config_options
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+from flask_simplemde import SimpleMDE
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -12,6 +13,7 @@ login_manager.login_view = 'auth.login'
 
 db = SQLAlchemy()
 bootstrap = Bootstrap()
+simple = SimpleMDE()
 
 def create_app(config_name):
     """
@@ -36,6 +38,7 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
+    simple.init_app(app)
 
     # Registering authentication blueprint
     from .auth import auth as auth_blueprint
