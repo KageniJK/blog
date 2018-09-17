@@ -17,3 +17,8 @@ class UpdateProfile(FlaskForm):
 class CommentForm(FlaskForm):
     comment = TextAreaField('Say something about this', validators=[Required()])
     submit = SubmitField('Submit')
+
+
+class MailingForm(FlaskForm):
+    email = StringField('email',validators=[Required()])
+    submit = SubmitField('Join')

@@ -34,7 +34,7 @@ def new_blog():
         new_post = Post(title=title, post=post_actual, user_id=current_user.id)
 
         new_post.save_post()
-        notification("New blog post", "email/notification", recepients)
+        # notification("New blog post", "email/notification", recepients)
         return redirect(url_for('.profile', uname=current_user.username))
 
     return render_template('new_post.html', post_form=post_form)

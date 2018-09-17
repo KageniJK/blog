@@ -104,6 +104,7 @@ class List(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def get_list(cls):
-        lists = List.query.filter_by(id).all()
-        return lists
+    @classmethod
+    def get_emails(cls):
+        listed = List.query.order_by(List.id).all()
+        return listed
